@@ -17,21 +17,24 @@ class Solution:
         Raises:
             - Don't need to error check due to constraint #1 above
         """        
-        # hash table optimisation - walk the list once, saving results to a table:
-        # This optimisation currently assumes no repeats in the list which is not one of the given constraints.
+        # hash table optimisation - walk the list once, saving results to a dict of lists:
         htable = {}
         for i, item in enumerate(nums):
             if item not in htable:
-                htable[item] = i
+                htable[item] = [i]
+            else:
+                htable[item].append(i)
         
-        for item, index in htable.items():
+        for item, index_list in htable.items():
+            index1 = index_list[0]
             ideal_item_2 = target - item
-            index2 = htable.get(ideal_item_2, None)
-
-            if index2:
-                return [index, index2]
+            for index2 in htable.get(ideal_item_2, []):
+                if index2 != index1:
+                    return [index1, index2]
+                
             
 test_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-test_target = 25
+test_nums2 = [2, 2]
+test_target = 3
 solution = Solution()
 print(solution.twoSum(test_nums, test_target))
