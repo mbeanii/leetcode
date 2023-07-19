@@ -35,6 +35,8 @@ class Solution:
             
 test_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 test_nums2 = [2, 2]
-test_target = 3
+test_target = 25
+test_target2 = 4
 solution = Solution()
 print(solution.twoSum(test_nums, test_target))
+print(solution.twoSum(test_nums2, test_target2))
