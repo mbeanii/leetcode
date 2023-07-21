@@ -1,6 +1,15 @@
 from typing import List
 
 class Solution:
+    def __init__(self):
+        self.htable = {}
+
+    def find_index2(self, target: int, item: int) -> int:
+        """ Returns the index of target - item if it is found in htable """        
+        ideal_item_2 = target - item
+        return self.htable.get(ideal_item_2)
+            
+
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         """
         Inputs:
@@ -17,21 +26,15 @@ class Solution:
         Raises:
             - Don't need to error check due to constraint #1 above
         """        
-        # hash table optimisation - walk the list once, saving results to a dict of lists:
-        htable = {}
+        # hash table optimisation - walk the list once, looking for a solution in htable and
+        # returning if one is found; memoizing otherwise:
         for i, item in enumerate(nums):
-            if item not in htable:
-                htable[item] = [i]
-            else:
-                htable[item].append(i)
-        
-        for item, index_list in htable.items():
-            index1 = index_list[0]
-            ideal_item_2 = target - item
-            for index2 in htable.get(ideal_item_2, []):
-                if index2 != index1:
-                    return [index1, index2]
-                
+            index1 = i
+            j = self.find_index2(target, item)
+            if j:
+                return [i, j]
+            self.htable[item] = i
+
             
 test_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 test_nums2 = [2, 2]
