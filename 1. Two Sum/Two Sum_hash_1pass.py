@@ -9,7 +9,6 @@ class Solution:
         ideal_item_2 = target - item
         return self.htable.get(ideal_item_2)
             
-
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         """
         Inputs:
