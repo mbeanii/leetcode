@@ -29,7 +29,6 @@ class Solution:
         # hash table optimisation - walk the list once, looking for a solution in htable and
         # returning if one is found; memoizing otherwise:
         for i, item in enumerate(nums):
-            index1 = i
             j = self.find_index2(target, item)
             if j:
                 return [i, j]
